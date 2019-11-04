@@ -1,0 +1,46 @@
+.flex-layout {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    /*主轴方向 row | column | row-reverse | colum-reverse */
+    flex-wrap: wrap;
+    /*换行 nowrap |wrap | wrap-reverse */
+    flex-flow: row wrap;
+    /* shorthand */
+    justify-content: flex-start;
+    /*水平上 flex-start | flex-end | center | space-between | space-around */
+    align-items: flex-start;
+    /*垂直上 stretch | flex-start | flex-end | center | baseline */
+    align-content: center;
+    /* 多轴线-垂直上  flex-start | flex-end | center | space-between | space-around | stretch;*/
+}
+
+.flex-layout article {
+    order: 0;
+    /* 顺序 */
+    flex-grow: 0;
+    /*放大 0 | 1 */
+    flex-shrink: 1;
+    /*缩小 1 | 0 */
+    flex-basis: auto;
+    /*固定宽度  */
+    flex: 300px;
+    /* shorthand grow-shrink-basis */
+    align-self: flex-start;
+    /* auto | flex-start | flex-end | center | baseline | stretch */
+    padding: 8px;
+}
+
+.form-flex {
+    display: flex;
+    width: 200px;
+    align-items: flex-start;
+    /* stretch/flex-start/flex-end/center */
+}
+
+.form-flex input {
+    flex-grow: 1;
+    /* 0/1 */
+    align-self: center;
+    /* stretch/flex-start/flex-end/center */
+}
