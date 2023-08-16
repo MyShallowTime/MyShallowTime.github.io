@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang=''>
+
+<head>
+    <title>flex layout</title>
+    <meta charset="utf-8" />
+    <meta name="author" data="Ms. Yang" />
+    <style>
+        .flex-layout {
+            width: 200px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            margin: 0 4px 4px;
+            background-color:rgb(158, 158, 201);
+            order: var(--i); /* 我就是说如果中间的调整了顺序，那其他默认为0的order不就是全部跑到前面去了吗？ */
+        }
+        /* 不是父元素 */
+        /* .flex-layout:nth-child(2n + 5) { */
+        /* 是当前这个元素数组中的子元素 */
+        /* 这个只适合8个 */
+        /* .item:nth-child(n + 5) {
+            order: calc(8 - var(--i))
+        } */
+        /* 如果是多个呢 */
+        /* 2n是不行的 */
+        /* .item:nth-child(2n + 5) {
+            order: calc(var(--i) + 3);
+        }
+        .item:nth-child(2n + 6) {
+            order: calc(var(--i) + 1);
+        }
+        .item:nth-child(2n + 7) {
+            order: calc(var(--i) - 1);
+        }
+        .item:nth-child(2n + 8) {
+            order: calc(var(--i) - 3);
+        } */
+
+        /* 为什么是8n ， 因为一行有4个，两行8个，重复的是两行的规则*/
+        .item:nth-child(8n + 5) {
+            order: calc(var(--i) + 3);
+        }
+        .item:nth-child(8n + 6) {
+            order: calc(var(--i) + 1);
+        }
+        .item:nth-child(8n + 7) {
+            order: calc(var(--i) - 1);
+        }
+        .item:nth-child(8n + 8) {
+            order: calc(var(--i) - 3);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <section class="flex-layout">
+    </section>
+    <footer></footer>
+    <script>
+        // https://mp.weixin.qq.com/s/c6eCimV_SKAQ-Lc3FSuLXA
+        // const items = new Array(8); // 想直接创建指定个数的数组，这样居然不行，进不了forEach
+        const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; 
+        const container = document.querySelector(".flex-layout");
+        items.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            // 怎么没有设置成功？
+            // itemDiv.class = 'item';
+            // 是className， 我记忆混乱了吗？
+            itemDiv.className = 'item';
+            // 这样style没有设置成功
+            // itemDiv.style = {
+            //     '--i': index
+            // };
+            // 是直接的字符串，跟想象中的不一样，觉得style是对象
+            itemDiv.style = `--i: ${index + 1}`;
+            itemDiv.innerText = item;
+            container.appendChild(itemDiv);
+        })
+        // TODO：进阶-一行的个数如果不确定呢？适应性布局
+    </script>
+</body>
+</html>
